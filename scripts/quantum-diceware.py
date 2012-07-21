@@ -1,8 +1,9 @@
+#!/usr/bin/env python
+
 import quantumrandom
 import os
 import csv
 import sys
-from itertools import repeat
 
 from pkg_resources import Requirement, resource_filename
 
