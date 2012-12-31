@@ -12,7 +12,7 @@ If you forget, look at the
 word list. After a while you won't need to refer to the word list and you can stick it
 someplace safe. A little bit after that you won't need to refer to the story anymore either.
 
-This is useful for making a very long password for Dropbox or 1password, something that
+This is useful for making a very long password for Dropbox or 1Password, something that
 has the keys to the castle and needs a super good password that is also something you can
 type easily.
 
