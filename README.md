@@ -25,7 +25,7 @@ Example
     quantum-diceware.py 6
     ['clomped', 'rash', 'toxic', 'twirling', '6th', 'sung']  
   
-Sample story
+Silly sample story
 ============
 Silly Suzy the Singer clomped over to the bathroom in her Doc Martens to get some cream for her rash. 
 Unfortunately, the cream was toxic and at her concert that night while she was twirling the
