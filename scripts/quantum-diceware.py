@@ -22,9 +22,9 @@ def _wordlist_to_dict(wordfile):
 def main():
     parser = argparse.ArgumentParser(description="Generates passphrases.")
 
-    parser.add_argument("numwords", 
+    parser.add_argument("numwords",
                             help="The number of words to generate")
-    parser.add_argument("-s", "--separator", 
+    parser.add_argument("-s", "--separator", default=" ",
                             help="The separator to use between words")
     parser.add_argument("-f", "--wordfile",
                             help="Filesystem path to a dictionary")
@@ -44,18 +44,7 @@ def main():
         numbers.append(quantumrandom.uint16(ID_LEN))
     lookups = map(lambda x: "".join([str(y) for y in (x % MAX_DIE_VALUE) + 1]), numbers)
 
-    if(args.separator != None):
-        first = None
-        for x in lookups:
-            if first == None:
-                first = worddict[x]
-            else:
-                sys.stdout.write(worddict[x]) 
-                sys.stdout.write(args.separator)
-            
-        sys.stdout.write(first + "\n")
-    else:
-        print [worddict[x] for x in lookups]
+    print args.separator.join([worddict[x] for x in lookups])
 
 if __name__ == "__main__":
     main()
