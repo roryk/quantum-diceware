@@ -4,6 +4,8 @@ import quantumrandom
 import os
 import csv
 import sys
+import argparse
+import logging
 
 from pkg_resources import Requirement, resource_filename
 
@@ -18,22 +20,42 @@ def _wordlist_to_dict(wordfile):
         return d
 
 def main():
-    args = sys.argv[1:]
-    usage = "diceware.py number_of_words [path_to_wordfile]\n"
-    if (len(args) != 1) and (len(args) != 2):
-        print usage
-        exit(1)
-    if len(args) > 1:
-        if os.path.exists(args[1]):
-            worddict = _wordlist_to_dict(args[1])
+    parser = argparse.ArgumentParser(description="Generates passphrases.")
+
+    parser.add_argument("numwords", 
+                            help="The number of words to generate")
+    parser.add_argument("-s", "--separator", 
+                            help="The separator to use between words")
+    parser.add_argument("-f", "--wordfile",
+                            help="Filesystem path to a dictionary")
+
+    args = parser.parse_args()
+
+    if(args.wordfile != None):
+        worddict = _wordlist_to_dict(args.wordfile)
     else:
         worddict = _wordlist_to_dict(resource_filename(
-            Requirement.parse("quantum_diceware"),"quantum_diceware/wordlists/english.asc"))
+        Requirement.parse("quantum_diceware"),
+            "quantum_diceware/wordlists/english.asc"))
+
     numbers = []
-    for i in xrange(0, int(args[0])):
+
+    for i in xrange(0, int(args.numwords)):
         numbers.append(quantumrandom.uint16(ID_LEN))
     lookups = map(lambda x: "".join([str(y) for y in (x % MAX_DIE_VALUE) + 1]), numbers)
-    print [worddict[x] for x in lookups]
+
+    if(args.separator != None):
+        first = None
+        for x in lookups:
+            if first == None:
+                first = worddict[x]
+            else:
+                sys.stdout.write(worddict[x]) 
+                sys.stdout.write(args.separator)
+            
+        sys.stdout.write(first + "\n")
+    else:
+        print [worddict[x] for x in lookups]
 
 if __name__ == "__main__":
     main()

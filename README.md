@@ -18,7 +18,7 @@ type easily.
 
 Usage
 =====
-    quantum-diceware.py number_of_words [path_to_non_english_file]
+    quantum-diceware.py [-h] [-s SEPARATOR] [-f WORDFILE] numwords
     
 Example
 =======
