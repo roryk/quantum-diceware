@@ -23,7 +23,7 @@ Usage
 Example
 =======
     quantum-diceware.py 6
-    ['clomped', 'rash', 'toxic', 'twirling', '6th', 'sung']
+    clomped rash toxic twirling 6th sung
 
 Silly sample story
 ============
