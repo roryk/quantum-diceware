@@ -16,6 +16,15 @@ def _wordlist_to_dict(wordfile):
             d[line[0]] = line[1]
         return d
 
+def _roll_dice(largestKey):
+    final = None
+
+    while (final == None) or (final > largestKey):
+        dice = quantumrandom.uint16(ID_LEN)
+        final = int("".join([str(y) for y in (dice % MAX_DIE_VALUE) + 1]))
+    
+    return str(final)
+
 def main():
     parser = argparse.ArgumentParser(description="Generates passphrases.")
 
@@ -35,12 +44,14 @@ def main():
         Requirement.parse("quantum_diceware"),
             "quantum_diceware/wordlists/english.asc"))
 
+    # find the largest key in the word dictionary
+    largestKey = max(k for k, v in worddict.iteritems() if v != 0)
+
     numbers = []
 
     # for each word generate ID_LEN (5) random numbers (one for each 'die')
     for i in xrange(0, int(args.numwords)):
-        dice = quantumrandom.uint16(ID_LEN)
-        numbers.append("".join([str(y) for y in (dice % MAX_DIE_VALUE) + 1]))
+        numbers.append(_roll_dice(largestKey))
 
     print args.separator.join([worddict[x] for x in numbers])
 
