@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 
 import quantumrandom
-import os
 import csv
-import sys
 import argparse
-import logging
 
 from pkg_resources import Requirement, resource_filename
 
@@ -40,11 +37,12 @@ def main():
 
     numbers = []
 
+    # for each word generate ID_LEN (5) random numbers (one for each 'die')
     for i in xrange(0, int(args.numwords)):
-        numbers.append(quantumrandom.uint16(ID_LEN))
-    lookups = map(lambda x: "".join([str(y) for y in (x % MAX_DIE_VALUE) + 1]), numbers)
+        dice = quantumrandom.uint16(ID_LEN)
+        numbers.append("".join([str(y) for y in (dice % MAX_DIE_VALUE) + 1]))
 
-    print args.separator.join([worddict[x] for x in lookups])
+    print args.separator.join([worddict[x] for x in numbers])
 
 if __name__ == "__main__":
     main()
