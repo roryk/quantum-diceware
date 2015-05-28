@@ -1,6 +1,7 @@
 Quantum diceware password generation
 ========================================================================
 [![Build Status](https://secure.travis-ci.org/roryk/quantum-diceware.svg)](http://travis-ci.org/roryk/quantum-diceware)
+
 quantum-diceware uses the
 [quantumrandom](https://github.com/lmacken/quantumrandom) package to grab random
 numbers from the ANU Quantum Random Numbers Server while generating the words
