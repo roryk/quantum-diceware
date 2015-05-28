@@ -1,0 +1,4 @@
+install:
+  - python setup.py install
+language: python
+script: quantum-diceware.py 10
