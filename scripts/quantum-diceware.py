@@ -42,7 +42,7 @@ def main():
     else:
         worddict = _wordlist_to_dict(resource_filename(
         Requirement.parse("quantum_diceware"),
-            "quantum_diceware/wordlists/diceware-english.asc"))
+            "quantum_diceware/wordlists/eff_large_wordlist.asc"))
 
     # find the largest key in the word dictionary
     largestKey = max(k for k, v in worddict.iteritems() if v != 0)
