@@ -3,7 +3,7 @@ from setuptools import setup
 import os
 
 PROJECT = 'quantum_diceware'
-VERSION = '0.1'
+VERSION = '0.2'
 URL = ''
 AUTHOR = u'Rory Kirchner'
 AUTHOR_EMAIL = u'rory.kirchner@gmail.com'
